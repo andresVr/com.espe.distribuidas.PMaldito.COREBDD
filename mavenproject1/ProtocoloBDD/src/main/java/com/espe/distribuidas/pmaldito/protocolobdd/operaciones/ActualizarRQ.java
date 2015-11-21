@@ -75,12 +75,5 @@ public class ActualizarRQ implements Cuerpo {
         return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + this.getValorCamposTabla() + "_" + this.getCodigoIdentificadorColumna() + "_" + this.getValorCodigoidentificadorColumna();
     }
 
-    public String unirCamposTabla(ArrayList campos) {
-        String campo = "_";
-        for (Object campo1 : campos) {
-            campo = campo + campo1 + "-";
-        }
-        return campo.substring(0, campo.length() - 1);
-    }
 
 }

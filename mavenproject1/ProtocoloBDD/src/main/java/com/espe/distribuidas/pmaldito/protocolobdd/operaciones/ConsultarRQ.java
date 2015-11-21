@@ -6,7 +6,6 @@
 package com.espe.distribuidas.pmaldito.protocolobdd.operaciones;
 
 import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Cuerpo;
-import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -70,12 +69,5 @@ public class ConsultarRQ implements Cuerpo {
         }
     }
 
-    public String unirCamposTabla(ArrayList campos) {
-        String campo = "_";
-        for (Object campo1 : campos) {
-            campo = campo + campo1 + "-";
-        }
-        return campo.substring(0, campo.length() - 1);
-    }
 
 }

@@ -50,8 +50,8 @@ public class Test {
         listaValor.add("juan");
         listaValor.add("perez");
         listaValor.add("12345@alguien.com");
-        ins.setCamposTabla(ins.unirCamposTabla(lista));
-        ins.setValorCamposTabla(ins.unirCamposTabla(listaValor));
+        ins.setCamposTabla(Mensaje.unirCamposTabla(lista));
+        ins.setValorCamposTabla(Mensaje.unirCamposTabla(listaValor));
         MensajeRQ ms = new MensajeRQ("12345", Mensaje.idMensajeInsertar);
         ms.setCuerpo(ins);
         System.out.println(ms.asTexto());

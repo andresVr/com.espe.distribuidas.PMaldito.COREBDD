@@ -76,4 +76,17 @@ public class Mensaje {
         }
         return resultado;
     }
+
+    /**
+     *
+     * @param campos
+     * @return
+     */
+    public static String unirCamposTabla(ArrayList campos) {
+        String campo = "_";
+        for (Object campo1 : campos) {
+            campo = campo + campo1 + "-";
+        }
+        return campo.substring(0, campo.length() - 1);
+    }
 }

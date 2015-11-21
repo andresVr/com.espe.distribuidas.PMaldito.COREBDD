@@ -20,6 +20,7 @@ public class InsertarRS implements Cuerpo {
     private ArrayList<String> campos = new ArrayList();
     private ArrayList<String> valosCamposTabla = new ArrayList();
     private String mensaje;
+
     public InsertarRS() {
     }
 
@@ -30,7 +31,7 @@ public class InsertarRS implements Cuerpo {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-    
+
     public String getPalabraReservada() {
         return palabraReservada;
     }
@@ -65,7 +66,12 @@ public class InsertarRS implements Cuerpo {
 
     @Override
     public String astexto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.getMensaje();
+    }
+
+    @Override
+    public String toString() {
+        return "InsertarRS{" + "palabraReservada=" + palabraReservada + ", nombreTabla=" + nombreTabla + ", campos=" + campos + ", valosCamposTabla=" + valosCamposTabla + ", mensaje=" + mensaje + '}';
     }
 
     public void buildInput(String string) {
@@ -80,7 +86,9 @@ public class InsertarRS implements Cuerpo {
     }
 
     public void buildOutput(String string) {
-    this.setMensaje(string);
+        if (string.equalsIgnoreCase("OK") || string.equalsIgnoreCase("NO")) {
+            this.setMensaje(string);
+        }
     }
 
 }
