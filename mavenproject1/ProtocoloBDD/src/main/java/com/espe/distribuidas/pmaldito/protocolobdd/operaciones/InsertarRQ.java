@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class InsertarRQ implements Cuerpo {
 
     private String nombreTabla;
-    private String camposTabla;
     private String valorCamposTabla;
 
     public InsertarRQ() {
@@ -33,15 +32,6 @@ public class InsertarRQ implements Cuerpo {
         this.nombreTabla = nombreTabla;
     }
 
-    public String getCamposTabla() {
-        return camposTabla;
-    }
-
-    public void setCamposTabla(String camposTabla) {
-
-        this.camposTabla = camposTabla;
-    }
-
     public String getValorCamposTabla() {
         return valorCamposTabla;
     }
@@ -53,9 +43,7 @@ public class InsertarRQ implements Cuerpo {
 
     @Override
     public String astexto() {
-        return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + this.getValorCamposTabla();
+        return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getValorCamposTabla();
     }
-
-   
 
 }
