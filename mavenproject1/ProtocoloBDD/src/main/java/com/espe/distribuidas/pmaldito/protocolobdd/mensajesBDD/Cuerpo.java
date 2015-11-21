@@ -12,12 +12,5 @@ package com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD;
 public interface Cuerpo {
     String astexto();
 
-    /**
-     *
-     * @param string
-     * @param caracteresInicio
-     * @param caracteresFin
-     * @return
-     */
-    Boolean validate(String string,Integer caracteresInicio,Integer caracteresFin);
+   
 }

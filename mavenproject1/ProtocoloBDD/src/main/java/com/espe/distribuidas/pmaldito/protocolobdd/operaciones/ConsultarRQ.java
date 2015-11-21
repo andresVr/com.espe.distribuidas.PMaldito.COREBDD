@@ -15,7 +15,6 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ConsultarRQ implements Cuerpo {
 
-
     private String nombreTabla;
     private String camposTabla;
     private String codigoIdentificadorColumna;
@@ -44,7 +43,6 @@ public class ConsultarRQ implements Cuerpo {
         return VocabularioBDD.insertar;
     }
 
-
     public String getNombreTabla() {
         return nombreTabla;
     }
@@ -65,26 +63,11 @@ public class ConsultarRQ implements Cuerpo {
     //METODOS
     @Override
     public String astexto() {
-        if(this.getCodigoIdentificadorColumna().equals("*"))
-        return this.getPalabraReservada()+"_"+this.getNombreTabla()+this.getCamposTabla()+"_"+this.getCodigoIdentificadorColumna();
-        else
-        return this.getPalabraReservada()+"_"+this.getNombreTabla()+this.getCamposTabla()+"_"+this.getCodigoIdentificadorColumna()+"_"+this.getValorCodigoidentificadorColumna();    
-    }
-
-    @Override
-    public Boolean validate(String string, Integer caracteresInicio, Integer caracteresFin) {
-        Boolean validador = false;
-        if (caracteresFin == null) {
-            if (string.length() == caracteresInicio) {
-                validador = true;
-            }
+        if (this.getCodigoIdentificadorColumna().equals("*")) {
+            return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + "_" + this.getCodigoIdentificadorColumna();
         } else {
-            if (string.length() > caracteresInicio && string.length() < caracteresFin) {
-                validador = true;
-            }
+            return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + "_" + this.getCodigoIdentificadorColumna() + "_" + this.getValorCodigoidentificadorColumna();
         }
-        return validador;
-
     }
 
     public String unirCamposTabla(ArrayList campos) {

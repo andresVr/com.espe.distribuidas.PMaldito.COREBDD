@@ -5,21 +5,20 @@
  */
 package com.espe.distribuidas.pmaldito.protocolobdd.seguridad;
 
-import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Construccion;
 import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Cuerpo;
-import org.apache.commons.codec.digest.DigestUtils;
+import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Mensaje;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  *
  * @author Andrés
  */
-public class AutenticacionRS implements Cuerpo, Construccion {
+public class AutenticacionRS implements Cuerpo  {
 
     private String mensaje;
     private String usuario;
     private String clave;
-    private String nombreBdd;
+
 
     public String getUsuario() {
         return usuario;
@@ -37,13 +36,6 @@ public class AutenticacionRS implements Cuerpo, Construccion {
         this.clave = clave;
     }
 
-    public String getNombreBdd() {
-        return nombreBdd;
-    }
-
-    public void setNombreBdd(String nombreBdd) {
-        this.nombreBdd = nombreBdd;
-    }
 
     public String getMensaje() {
         return mensaje;
@@ -65,47 +57,29 @@ public class AutenticacionRS implements Cuerpo, Construccion {
     public String astexto() {
         return this.getMensaje();
     }
-
     @Override
-    public boolean validateHash(String cuerpo, String hash) {
-        String md5Hex = DigestUtils.md5Hex(cuerpo);
-        return md5Hex.equals(hash);
+    public String toString() {
+        return "AutenticacionRS{" + "usuario=" + usuario + ", clave=" + clave + '}';
     }
 
-    @Override
-    public Boolean validate(String string, Integer caracteresInicio, Integer caracteresFin) {
-        Boolean validador = false;
-        if (caracteresFin == null) {
-            if (string.length() == caracteresInicio) {
-                validador = true;
-            }
-        } else if (caracteresFin == 0) {
-            if (string.length() > caracteresInicio) {
-                validador = true;
-            }
+
+    public void buildInput(String string) {
+        if (Mensaje.validate(string, 85, 0) && Mensaje.validateHash(string.substring(85), string.substring(53, 85))) {
+            String partes[] = StringUtils.splitPreserveAllTokens(string,"_");
+            this.setUsuario(partes[0].substring(85));
+            this.setClave(partes[1]);
 
         } else {
-            if (string.length() > caracteresInicio && string.length() < caracteresFin) {
-                validador = true;
-            }
-        }
-        return validador;
-
-    }
-
-    @Override
-    public void buildInput(String string) {
-        String partes[] = StringUtils.splitPreserveAllTokens("_");
-        if (validate(string, 85, 0)) {
-            this.setUsuario(string.substring(85, 95));
-            this.setClave(string.substring(95, 105));
-            this.setNombreBdd(partes[1]);
+            this.mensaje = null;
         }
     }
 
-    @Override
+    /**
+     *
+     * @param string
+     */
     public void buildOutput(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setMensaje(string);
     }
 
 }

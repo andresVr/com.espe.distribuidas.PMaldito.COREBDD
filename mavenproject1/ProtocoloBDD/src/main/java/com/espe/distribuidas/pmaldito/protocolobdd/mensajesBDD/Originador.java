@@ -30,7 +30,7 @@ public class Originador {
             Logger.getLogger(Originador.class.getName()).log(Level.SEVERE, null, ex);
         }
         origen = origen + "@" + c;
-        origen = StringUtils.rightPad(origen, 20);
+        origen = StringUtils.rightPad(origen, 20,'0');
         return origen;
     }
 

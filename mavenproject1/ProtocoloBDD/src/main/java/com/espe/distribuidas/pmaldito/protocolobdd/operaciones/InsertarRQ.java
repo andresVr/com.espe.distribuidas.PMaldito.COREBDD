@@ -14,7 +14,6 @@ import java.util.ArrayList;
  */
 public class InsertarRQ implements Cuerpo {
 
-    
     private String nombreTabla;
     private String camposTabla;
     private String valorCamposTabla;
@@ -33,7 +32,6 @@ public class InsertarRQ implements Cuerpo {
     public void setNombreTabla(String nombreTabla) {
         this.nombreTabla = nombreTabla;
     }
-    
 
     public String getCamposTabla() {
         return camposTabla;
@@ -56,22 +54,6 @@ public class InsertarRQ implements Cuerpo {
     @Override
     public String astexto() {
         return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + this.getValorCamposTabla();
-    }
-
-    @Override
-    public Boolean validate(String string, Integer caracteresInicio, Integer caracteresFin) {
-        Boolean validador = false;
-        if (caracteresFin == null) {
-            if (string.length() == caracteresInicio) {
-                validador = true;
-            }
-        } else {
-            if (string.length() > caracteresInicio && string.length() < caracteresFin) {
-                validador = true;
-            }
-        }
-        return validador;
-
     }
 
     public String unirCamposTabla(ArrayList campos) {

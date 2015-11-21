@@ -15,7 +15,6 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ActualizarRQ implements Cuerpo {
 
-
     private String nombreTabla;
     private String camposTabla;
     private String valorCamposTabla;
@@ -32,7 +31,7 @@ public class ActualizarRQ implements Cuerpo {
     public void setValorCamposTabla(String valorCamposTabla) {
         this.valorCamposTabla = valorCamposTabla;
     }
-    
+
     public String getValorCodigoidentificadorColumna() {
         return valorCodigoidentificadorColumna;
     }
@@ -52,7 +51,6 @@ public class ActualizarRQ implements Cuerpo {
     public String getPalabraReservada() {
         return VocabularioBDD.actualizar;
     }
-
 
     public String getNombreTabla() {
         return nombreTabla;
@@ -74,23 +72,7 @@ public class ActualizarRQ implements Cuerpo {
     //METODOS
     @Override
     public String astexto() {
-        return this.getPalabraReservada()+"_"+this.getNombreTabla()+this.getCamposTabla()+this.getValorCamposTabla()+"_"+this.getCodigoIdentificadorColumna()+"_"+this.getValorCodigoidentificadorColumna();    
-    }
-
-    @Override
-    public Boolean validate(String string, Integer caracteresInicio, Integer caracteresFin) {
-        Boolean validador = false;
-        if (caracteresFin == null) {
-            if (string.length() == caracteresInicio) {
-                validador = true;
-            }
-        } else {
-            if (string.length() > caracteresInicio && string.length() < caracteresFin) {
-                validador = true;
-            }
-        }
-        return validador;
-
+        return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + this.getValorCamposTabla() + "_" + this.getCodigoIdentificadorColumna() + "_" + this.getValorCodigoidentificadorColumna();
     }
 
     public String unirCamposTabla(ArrayList campos) {
@@ -102,4 +84,3 @@ public class ActualizarRQ implements Cuerpo {
     }
 
 }
-

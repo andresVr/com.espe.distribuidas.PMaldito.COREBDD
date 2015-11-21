@@ -6,7 +6,7 @@
 package com.espe.distribuidas.pmaldito.protocolobdd.seguridad;
 
 import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Cuerpo;
-import org.apache.commons.lang3.StringUtils;
+
 
 /**
  *
@@ -44,7 +44,7 @@ public class AutenticacionRQ implements Cuerpo {
     }
 
     public void setUsuario(String usuario) {
-        this.usuario = StringUtils.rightPad(usuario, 10);
+        this.usuario = usuario;
     }
 
     public String getClave() {
@@ -52,7 +52,7 @@ public class AutenticacionRQ implements Cuerpo {
     }
 
     public void setClave(String clave) {
-        this.clave = StringUtils.rightPad(clave, 10);
+        this.clave = clave;
     }
 
     /**
@@ -61,27 +61,11 @@ public class AutenticacionRQ implements Cuerpo {
      */
     @Override
     public String astexto() {
-        return this.usuario + this.clave +"_"+this.nombreBdd;
+        return this.usuario +"_"+ this.clave +"_"+this.nombreBdd;
     }
 
     @Override
     public String toString() {
         return "AutenticacionRQ{" + "usuario=" + usuario + ", clave=" + clave + ", nombreBdd=" + nombreBdd + '}';
     }
-
-    @Override
-    public Boolean validate(String string, Integer caracteresInicio, Integer caracteresFin) {
-        Boolean validador=false;
-        if (caracteresFin == null) {
-            if(string.length()==caracteresInicio)
-                validador=true;
-        }
-        else 
-        {
-        if(string.length()>caracteresInicio&&string.length()<caracteresFin)
-            validador=true;
-        }
-        return validador;
-    }
-
 }
