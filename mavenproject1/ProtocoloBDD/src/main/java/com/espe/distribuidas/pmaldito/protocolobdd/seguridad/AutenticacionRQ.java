@@ -16,7 +16,6 @@ public class AutenticacionRQ implements Cuerpo {
 
     private String usuario;
     private String clave;
-    private String nombreBdd;
 
     /**
      *
@@ -25,19 +24,6 @@ public class AutenticacionRQ implements Cuerpo {
         // TODO Auto-generated constructor stub
     }
 
-    public AutenticacionRQ(String usuario, String clave, String nombreBdd) {
-        this.usuario = usuario;
-        this.clave = clave;
-        this.nombreBdd = nombreBdd;
-    }
-
-    public String getNombreBdd() {
-        return nombreBdd;
-    }
-
-    public void setNombreBdd(String nombreBdd) {
-        this.nombreBdd = nombreBdd;
-    }
 
     public String getUsuario() {
         return usuario;
@@ -61,11 +47,11 @@ public class AutenticacionRQ implements Cuerpo {
      */
     @Override
     public String astexto() {
-        return this.usuario +"_"+ this.clave +"_"+this.nombreBdd;
+        return this.usuario +"_"+ this.clave;
     }
 
     @Override
     public String toString() {
-        return "AutenticacionRQ{" + "usuario=" + usuario + ", clave=" + clave + ", nombreBdd=" + nombreBdd + '}';
+        return "AutenticacionRQ{" + "usuario=" + usuario + ", clave=" + clave + '}';
     }
 }

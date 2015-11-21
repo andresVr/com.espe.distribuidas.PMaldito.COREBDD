@@ -89,4 +89,5 @@ public class Mensaje {
         }
         return campo.substring(0, campo.length() - 1);
     }
+    
 }

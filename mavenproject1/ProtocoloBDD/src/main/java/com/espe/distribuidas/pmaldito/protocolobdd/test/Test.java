@@ -25,7 +25,6 @@ public class Test {
         AutenticacionRQ au = new AutenticacionRQ();
         au.setUsuario("LUIG");
         au.setClave("ROCHA");
-        au.setNombreBdd("ProyectoMaldito");
         MensajeRQ rq1 = new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), Mensaje.idMensajeInsertar);
         rq1.setCuerpo(au);
         System.out.println(rq1.asTexto());
