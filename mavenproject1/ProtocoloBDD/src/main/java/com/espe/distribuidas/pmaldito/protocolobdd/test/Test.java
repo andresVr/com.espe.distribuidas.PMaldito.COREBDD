@@ -5,9 +5,11 @@
  */
 package com.espe.distribuidas.pmaldito.protocolobdd.test;
 
-import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Mensaje;
+import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.MensajeBDD;
 import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.MensajeRQ;
+import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.MensajeRS;
 import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Originador;
+import com.espe.distribuidas.pmaldito.protocolobdd.operaciones.ConsultarRQ;
 import com.espe.distribuidas.pmaldito.protocolobdd.operaciones.InsertarRQ;
 import com.espe.distribuidas.pmaldito.protocolobdd.seguridad.AutenticacionRQ;
 import com.espe.distribuidas.pmaldito.protocolobdd.seguridad.AutenticacionRS;
@@ -25,34 +27,72 @@ public class Test {
         AutenticacionRQ au = new AutenticacionRQ();
         au.setUsuario("LUIG");
         au.setClave("ROCHA");
-        MensajeRQ rq1 = new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), Mensaje.idMensajeInsertar);
+        MensajeRQ rq1 = new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeAutenticacion);
         rq1.setCuerpo(au);
         System.out.println(rq1.asTexto());
         //Autenticacion RS
         AutenticacionRS aurs = new AutenticacionRS();
-        aurs.buildInput("RQ10.0.1.104@A0000000020151120170242012INSERTABDD0026927823e05779ab30d1bbf0b41ab51d80LUIG_ROCHA_ProyectoMaldito");
+        aurs.buildInput("RQ10.0.1.104@A0000000020151120170242012INSERTABDD0026927823e05779ab30d1bbf0b41ab51d80LUIG_ROCHA");
         System.out.println(aurs.toString());
-        MensajeRQ rq2 = new MensajeRQ(Originador.getOriginador(Originador.BASE_DATOS), Mensaje.idMensajeInsertar);
+        MensajeRQ rq2 = new MensajeRQ(Originador.getOriginador(Originador.BASE_DATOS), MensajeBDD.idMensajeInsertar);
         aurs.buildOutput("OK");
         rq2.setCuerpo(aurs);
         System.out.println(rq2.asTexto());
         //InsertarRQ
         InsertarRQ ins = new InsertarRQ();
-        ins.setNombreTabla("CLiente");
+        ins.setNombreTabla("CLIENTE");
         ArrayList lista = new ArrayList();
         lista.add("codigo");
         lista.add("nombre");
         lista.add("apellido");
         lista.add("correo");
         ArrayList listaValor = new ArrayList();
-        listaValor.add("12345");
+        listaValor.add("CEDUL");
+        listaValor.add("1726247958");
         listaValor.add("juan");
         listaValor.add("perez");
+        listaValor.add("QuitoSur");
+        listaValor.add("0984383260");
+        listaValor.add("022629564");
         listaValor.add("12345@alguien.com");
-        ins.setValorCamposTabla(Mensaje.unirCamposTabla(listaValor));
-        MensajeRQ ms = new MensajeRQ("12345", Mensaje.idMensajeInsertar);
+        listaValor.add("19920701");
+        ins.setValorCamposTabla(MensajeBDD.unirCamposTabla(listaValor));
+        MensajeRQ ms = new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeInsertar);
         ms.setCuerpo(ins);
         System.out.println(ms.asTexto());
+        //inserrtar factura
+        ArrayList<String> cabeceraFact = new ArrayList<>();
+        cabeceraFact.add("12345");
+        cabeceraFact.add("1726247958");
+        cabeceraFact.add("20151122113800");
+        cabeceraFact.add("50.20");
+        ArrayList<String> cuerpoFact = new ArrayList<>();
+        cuerpoFact.add("1234");
+        cuerpoFact.add("12345");
+        cuerpoFact.add("coca-cola");
+        cuerpoFact.add("5");
+        cuerpoFact.add("2.50");
+        cuerpoFact.add("1235");
+        cuerpoFact.add("12345");
+        cuerpoFact.add("pollo");
+        cuerpoFact.add("5");
+        cuerpoFact.add("15");
+        InsertarRQ rq=new InsertarRQ();
+        rq.setNombreTabla("FACTURA");
+        rq.setValorCamposTabla(MensajeBDD.unirCamposTabla(cabeceraFact));
+        rq.setValorcuerpo(MensajeBDD.unirCamposTabla(cuerpoFact));
+        MensajeRQ rs=new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeInsertar);
+        rs.setCuerpo(rq);
+        System.out.println(rs.asTexto());
+        ///rq info cliente
+        ConsultarRQ crq=new ConsultarRQ();
+        crq.setNombreTabla("CLIENTE");
+        crq.setCamposTabla("|");
+        crq.setCodigoIdentificadorColumna("1");
+        crq.setValorCodigoidentificadorColumna("1726247958");
+        MensajeRQ rqd=new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeInsertar);
+        rqd.setCuerpo(crq);
+        System.out.println(rqd.asTexto());
     }
 
 }

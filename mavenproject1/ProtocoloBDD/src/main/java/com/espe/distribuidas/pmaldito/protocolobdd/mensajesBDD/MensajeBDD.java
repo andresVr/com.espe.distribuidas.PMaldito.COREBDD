@@ -6,6 +6,7 @@
 package com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -13,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author Andrés
  */
-public class Mensaje {
+public class MensajeBDD {
 
     public static final String idMensajeRQ = "RQ";
     public static final String idMensajeRS = "RS";
@@ -70,12 +71,10 @@ public class Mensaje {
     {
         ArrayList resultado=new ArrayList();
         String partes[]=StringUtils.splitPreserveAllTokens(string,separador);
-        for(int i=0;i<partes.length;i++)
-        {
-        resultado.add(resultado.get(i));
-        }
+        resultado.addAll(Arrays.asList(partes));
         return resultado;
     }
+    
 
     /**
      *

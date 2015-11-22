@@ -42,7 +42,7 @@ public class MensajeRS {
 	}
 
 	public MensajeRS(String originador, String idMensaje) {
-		this.cabecera = new Cabecera(Mensaje.idMensajeRS, originador, idMensaje);
+		this.cabecera = new Cabecera(MensajeBDD.idMensajeRS, originador, idMensaje);
 	}
 
 	public String cifrarmd5() {

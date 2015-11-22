@@ -30,7 +30,7 @@ public class MensajeRQ {
 		this.cuerpo = cuerpo;
 	}
 	public MensajeRQ(String originador,String idMensaje) {
-		this.cabecera=new Cabecera(Mensaje.idMensajeRQ,originador,idMensaje);
+		this.cabecera=new Cabecera(MensajeBDD.idMensajeRQ,originador,idMensaje);
 	}
 	
 	public String asTexto(){

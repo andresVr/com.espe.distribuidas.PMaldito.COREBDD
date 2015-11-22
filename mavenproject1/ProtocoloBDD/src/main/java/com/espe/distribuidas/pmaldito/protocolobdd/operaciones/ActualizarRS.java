@@ -6,7 +6,7 @@
 package com.espe.distribuidas.pmaldito.protocolobdd.operaciones;
 
 import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Cuerpo;
-import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Mensaje;
+import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.MensajeBDD;
 import java.util.ArrayList;
 
 /**
@@ -100,12 +100,12 @@ public class ActualizarRS implements Cuerpo {
 
     public void buildInput(String string) {
 
-        if (Mensaje.validate(string, 85, 0) && Mensaje.validateHash(string.substring(85), string.substring(53, 85))) {
-            this.setCampos(Mensaje.getLista(string, "_"));
+        if (MensajeBDD.validate(string, 85, 0) && MensajeBDD.validateHash(string.substring(85), string.substring(53, 85))) {
+            this.setCampos(MensajeBDD.getLista(string, "_"));
             this.setPalabraReservada(this.getCampos().get(0).substring(85));
             this.setNombreTabla(this.getCampos().get(1));
-            this.setCamposTabla(Mensaje.getLista(this.getCampos().get(3), "-"));
-            this.setValorCamposTabla(Mensaje.getLista(this.getCampos().get(4), "-"));
+            this.setCamposTabla(MensajeBDD.getLista(this.getCampos().get(3), "-"));
+            this.setValorCamposTabla(MensajeBDD.getLista(this.getCampos().get(4), "-"));
             this.setCodigoIdentificadorColumna(this.getCampos().get(5));
             this.setValorCodigoidentificadorColumna(this.getCampos().get(6));
         }

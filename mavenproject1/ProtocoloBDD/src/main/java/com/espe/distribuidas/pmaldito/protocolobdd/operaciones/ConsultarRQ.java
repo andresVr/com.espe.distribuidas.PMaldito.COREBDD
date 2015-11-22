@@ -65,7 +65,7 @@ public class ConsultarRQ implements Cuerpo {
         if (this.getCodigoIdentificadorColumna().equals("*")) {
             return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + "_" + this.getCodigoIdentificadorColumna();
         } else {
-            return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getCamposTabla() + "_" + this.getCodigoIdentificadorColumna() + "_" + this.getValorCodigoidentificadorColumna();
+            return this.getPalabraReservada() + "_" + this.getNombreTabla()+"" + this.getCamposTabla() + "_" + this.getCodigoIdentificadorColumna() + "_" + this.getValorCodigoidentificadorColumna();
         }
     }
 

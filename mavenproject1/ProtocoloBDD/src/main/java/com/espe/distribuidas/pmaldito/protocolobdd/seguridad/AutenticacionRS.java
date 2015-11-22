@@ -6,7 +6,7 @@
 package com.espe.distribuidas.pmaldito.protocolobdd.seguridad;
 
 import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Cuerpo;
-import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.Mensaje;
+import com.espe.distribuidas.pmaldito.protocolobdd.mensajesBDD.MensajeBDD;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -64,7 +64,7 @@ public class AutenticacionRS implements Cuerpo  {
 
 
     public void buildInput(String string) {
-        if (Mensaje.validate(string, 85, 0) && Mensaje.validateHash(string.substring(85), string.substring(53, 85))) {
+        if (MensajeBDD.validate(string, 85, 0) && MensajeBDD.validateHash(string.substring(85), string.substring(53, 85))) {
             String partes[] = StringUtils.splitPreserveAllTokens(string,"_");
             this.setUsuario(partes[0].substring(85));
             this.setClave(partes[1]);

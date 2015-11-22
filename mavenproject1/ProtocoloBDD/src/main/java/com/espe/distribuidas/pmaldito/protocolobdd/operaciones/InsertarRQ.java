@@ -16,8 +16,17 @@ public class InsertarRQ implements Cuerpo {
 
     private String nombreTabla;
     private String valorCamposTabla;
+    private String valorcuerpo;
 
     public InsertarRQ() {
+    }
+
+    public String getValorcuerpo() {
+        return valorcuerpo;
+    }
+
+    public void setValorcuerpo(String valorcuerpo) {
+        this.valorcuerpo = valorcuerpo;
     }
 
     public String getPalabraReservada() {
@@ -43,7 +52,12 @@ public class InsertarRQ implements Cuerpo {
 
     @Override
     public String astexto() {
-        return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getValorCamposTabla();
+        if (this.getValorcuerpo() != null) {
+            return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getValorCamposTabla() + this.getValorcuerpo();
+        } else {
+            return this.getPalabraReservada() + "_" + this.getNombreTabla() + this.getValorCamposTabla();
+        }
+
     }
 
 }
