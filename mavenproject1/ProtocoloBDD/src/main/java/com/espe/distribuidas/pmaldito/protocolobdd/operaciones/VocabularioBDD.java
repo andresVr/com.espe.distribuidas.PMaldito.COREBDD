@@ -11,7 +11,7 @@ package com.espe.distribuidas.pmaldito.protocolobdd.operaciones;
  */
 public class VocabularioBDD {
     public static final String insertar="INSERTAREN";
-    public static final String actualizar="CONSULTAEN";
-    public static final String consultar="ACTUALIZAEN";
+    public static final String consultar="CONSULTAEN";
+    public static final String actualizar="ACTUALIZAEN";
     
 }

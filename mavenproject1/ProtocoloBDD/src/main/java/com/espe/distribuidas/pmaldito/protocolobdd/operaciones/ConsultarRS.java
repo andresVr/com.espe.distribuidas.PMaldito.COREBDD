@@ -25,7 +25,7 @@ public class ConsultarRS implements Cuerpo {
     //rs
     private String resultado;
     private ArrayList<String> valoresConsulta = new ArrayList<>();
-    private String numeroRecuperados;
+    
 
     public ConsultarRS() {
     }
@@ -60,14 +60,6 @@ public class ConsultarRS implements Cuerpo {
 
     public void setValoresConsulta(ArrayList<String> valoresConsulta) {
         this.valoresConsulta = valoresConsulta;
-    }
-
-    public String getNumeroRecuperados() {
-        return numeroRecuperados;
-    }
-
-    public void setNumeroRecuperados(String numeroRecuperados) {
-        this.numeroRecuperados = numeroRecuperados;
     }
 
     public String getPalabraReservada() {
@@ -113,7 +105,7 @@ public class ConsultarRS implements Cuerpo {
     @Override
     public String astexto() {
         if (resultado.equals("OKO")) {
-            return this.getResultado() + "_" + MensajeBDD.unirCamposTabla(this.getValoresConsulta()) + "_" + this.getNumeroRecuperados();
+            return this.getResultado()  + MensajeBDD.unirCamposTabla(this.getValoresConsulta()) ;
         } else {
             return this.getResultado();
         }
@@ -127,32 +119,31 @@ public class ConsultarRS implements Cuerpo {
                 this.setPalabraReservada(this.getCampos().get(0).substring(85));
                 this.setNombreTabla(this.getCampos().get(1));
             }
-            else if(this.getCampos().get(3).equalsIgnoreCase("/"))
+            else if(this.getCampos().get(2).equalsIgnoreCase("/"))
             {
                 this.setPalabraReservada(this.getCampos().get(0).substring(85));
                 this.setNombreTabla(this.getCampos().get(1));
-                this.setCamposTablaEspeciales(this.getCampos().get(3));
-                this.setCodigoIdentificadorColumna(this.getCampos().get(4));
-                this.setValorCodigoidentificadorColumna(this.getCampos().get(5));
+                this.setCamposTablaEspeciales(this.getCampos().get(2));
+                this.setCodigoIdentificadorColumna(this.getCampos().get(3));
+                this.setValorCodigoidentificadorColumna(this.getCampos().get(4));
 
             }
             else {
                 this.setPalabraReservada(this.getCampos().get(0).substring(85));
                 this.setNombreTabla(this.getCampos().get(1));
-                this.setCamposTabla(MensajeBDD.getLista(this.getCampos().get(3), "-"));
-                this.setCodigoIdentificadorColumna(this.getCampos().get(4));
-                this.setValorCodigoidentificadorColumna(this.getCampos().get(5));
+                this.setCamposTabla(MensajeBDD.getLista(this.getCampos().get(2), "-"));
+                this.setCodigoIdentificadorColumna(this.getCampos().get(3));
+                this.setValorCodigoidentificadorColumna(this.getCampos().get(4));
 
             }
         }
 
     }
 
-    public void buildOutput(String resultado, ArrayList<String> string, Integer recuperados) {
+    public void buildOutput(String resultado, ArrayList<String> string) {
         if (resultado.equals("OKO")) {
             this.setResultado(resultado);
             this.setValoresConsulta(string);
-            this.setNumeroRecuperados(recuperados.toString());
         } else {
             this.setResultado(resultado);
         }

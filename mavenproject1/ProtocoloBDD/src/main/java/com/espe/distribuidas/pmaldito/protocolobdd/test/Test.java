@@ -87,10 +87,10 @@ public class Test {
         ///rq info cliente
         ConsultarRQ crq=new ConsultarRQ();
         crq.setNombreTabla("CLIENTE");
-        crq.setCamposTabla("|");
+        crq.setCamposTabla("/");
         crq.setCodigoIdentificadorColumna("1");
         crq.setValorCodigoidentificadorColumna("1726247958");
-        MensajeRQ rqd=new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeInsertar);
+        MensajeRQ rqd=new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeConsultar);
         rqd.setCuerpo(crq);
         System.out.println(rqd.asTexto());
     }
