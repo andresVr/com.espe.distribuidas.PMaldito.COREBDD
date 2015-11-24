@@ -22,12 +22,20 @@ public class ConsultarRS implements Cuerpo {
     private String codigoIdentificadorColumna;
     private String valorCodigoidentificadorColumna;
     private String camposTablaEspeciales;
+    private String cuerpo;
     //rs
     private String resultado;
     private ArrayList<String> valoresConsulta = new ArrayList<>();
-    
 
     public ConsultarRS() {
+    }
+
+    public String getCuerpo() {
+        return cuerpo;
+    }
+
+    public void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
     }
 
     public String getCamposTablaEspeciales() {
@@ -37,7 +45,7 @@ public class ConsultarRS implements Cuerpo {
     public void setCamposTablaEspeciales(String camposTablaEspeciales) {
         this.camposTablaEspeciales = camposTablaEspeciales;
     }
-    
+
     public ArrayList<String> getCampos() {
         return campos;
     }
@@ -105,7 +113,7 @@ public class ConsultarRS implements Cuerpo {
     @Override
     public String astexto() {
         if (resultado.equals("OKO")) {
-            return this.getResultado()  + MensajeBDD.unirCamposTabla(this.getValoresConsulta()) ;
+            return this.getResultado() + MensajeBDD.unirCamposTabla(this.getValoresConsulta());
         } else {
             return this.getResultado();
         }
@@ -118,17 +126,14 @@ public class ConsultarRS implements Cuerpo {
             if (this.getCampos().get(3).equalsIgnoreCase("*")) {
                 this.setPalabraReservada(this.getCampos().get(0).substring(85));
                 this.setNombreTabla(this.getCampos().get(1));
-            }
-            else if(this.getCampos().get(2).equalsIgnoreCase("/"))
-            {
+            } else if (this.getCampos().get(2).equalsIgnoreCase("/")) {
                 this.setPalabraReservada(this.getCampos().get(0).substring(85));
                 this.setNombreTabla(this.getCampos().get(1));
                 this.setCamposTablaEspeciales(this.getCampos().get(2));
                 this.setCodigoIdentificadorColumna(this.getCampos().get(3));
                 this.setValorCodigoidentificadorColumna(this.getCampos().get(4));
 
-            }
-            else {
+            } else {
                 this.setPalabraReservada(this.getCampos().get(0).substring(85));
                 this.setNombreTabla(this.getCampos().get(1));
                 this.setCamposTabla(MensajeBDD.getLista(this.getCampos().get(2), "-"));
@@ -136,6 +141,20 @@ public class ConsultarRS implements Cuerpo {
                 this.setValorCodigoidentificadorColumna(this.getCampos().get(4));
 
             }
+        }
+
+    }
+
+    public void buildInput(String string, String tabla) {
+
+        if (MensajeBDD.validateHash(string.substring(85), string.substring(53, 85)) && MensajeBDD.validate(string, 85, 0) && tabla.equals("FACTURA")) {
+            this.setCampos(MensajeBDD.getLista(string, "_"));
+            this.setPalabraReservada(this.getCampos().get(0).substring(85));
+            this.setNombreTabla(this.getCampos().get(1));
+            this.setCamposTablaEspeciales(this.getCampos().get(2));
+            this.setCodigoIdentificadorColumna(this.getCampos().get(3));
+            this.setValorCodigoidentificadorColumna(this.getCampos().get(4));
+            this.setCuerpo(this.getCampos().get(5));
         }
 
     }
@@ -149,7 +168,8 @@ public class ConsultarRS implements Cuerpo {
         }
 
     }
-     public void buildOutput(String resultado) {
+
+    public void buildOutput(String resultado) {
         if (resultado.equals("BAD")) {
             this.setResultado(resultado);
         }
