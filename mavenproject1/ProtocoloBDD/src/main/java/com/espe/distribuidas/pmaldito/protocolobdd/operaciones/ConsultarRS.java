@@ -145,7 +145,7 @@ public class ConsultarRS implements Cuerpo {
 
     }
 
-    public void buildInput(String string, String tabla) {
+/*    public void buildInput(String string, String tabla) {
 
         if (MensajeBDD.validateHash(string.substring(85), string.substring(53, 85)) && MensajeBDD.validate(string, 85, 0) && tabla.equals("FACTURA")) {
             this.setCampos(MensajeBDD.getLista(string, "_"));
@@ -158,7 +158,7 @@ public class ConsultarRS implements Cuerpo {
         }
 
     }
-
+*/
     public void buildOutput(String resultado, ArrayList<String> string) {
         if (resultado.equals("OKO")) {
             this.setResultado(resultado);

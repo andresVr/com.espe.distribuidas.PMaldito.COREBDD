@@ -48,7 +48,7 @@ public class Test {
         lista.add("correo");
         ArrayList listaValor = new ArrayList();
         listaValor.add("CEDUL");
-        listaValor.add("1796247945");
+        listaValor.add("1726247958");
         listaValor.add("Luis");
         listaValor.add("paez");
         listaValor.add("conocoto");
@@ -102,6 +102,15 @@ public class Test {
         MensajeRQ rqd1 = new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeConsultar);
         rqd.setCuerpo(crq);
         System.out.println(rqd.asTexto());
+        //rq factura
+        ConsultarRQ rf=new ConsultarRQ();
+        rf.setNombreTabla("FACTURA");
+        rf.setCamposTabla("/");
+        rf.setCodigoIdentificadorColumna("0");
+        rf.setValorCodigoidentificadorColumna("12346");
+        MensajeRQ sf=new MensajeRQ(Originador.getOriginador(Originador.SRV_APLICACION), MensajeBDD.idMensajeConsultar);
+        sf.setCuerpo(rf);
+        System.out.println(sf.asTexto());
 
     }
 
